@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Linktree</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            color: #f8fafc;
+        }
+
+        /* Profile Section */
+        .profile {
+            text-align: center;
+            margin: 4rem 0 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s 0.3s forwards;
+        }
+
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 3px solid rgba(255,255,255,0.1);
+            margin-bottom: 1.5rem;
+            object-fit: cover;
+            transform: translateY(20px);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #f8fafc, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bio {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Links Container */
+        .links {
+            width: 100%;
+            max-width: 600px;
+            margin: 2rem 0;
+        }
+
+        /* Link Items */
+        .link-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            margin: 1rem 0;
+            padding: 1.2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .link-item:nth-child(1) { animation-delay: 0.4s; }
+        .link-item:nth-child(2) { animation-delay: 0.5s; }
+        .link-item:nth-child(3) { animation-delay: 0.6s; }
+        .link-item:nth-child(4) { animation-delay: 0.7s; }
+        .link-item:nth-child(5) { animation-delay: 0.8s; }
+
+        .link-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        .link-icon {
+            font-size: 1.8rem;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .link-text {
+            flex-grow: 1;
+            color: #f8fafc;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        /* WhatsApp Floating Button */
+        .wa-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #25D366;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.3);
+            animation: pulse 2s infinite, slideInRight 1s 1s forwards;
+            opacity: 0;
+            transform: translateX(100px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .wa-float:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .wa-float i {
+            font-size: 2rem;
+            color: white;
+            animation: bounce 1.5s infinite;
+        }
+
+        /* Social Icons */
+        .socials {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            opacity: 0;
+            animation: fadeIn 1s 1.2s forwards;
+        }
+
+        .socials a {
+            color: #94a3b8;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .socials a:hover {
+            color: #25D366;
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Platform Colors */
+        .instagram { color: #E1306C; }
+        .whatsapp { color: #25D366; }
+        .tiktok { color: #000; }
+        .shopee { color: #EE4D2D; }
+        .email { color: #EA4335; }
+        .portfolio { color: #818cf8; }
+    </style>
+</head>
+<body>
+    <div class="profile">
+        <img src="https://i.ibb.co.com/5gv3T2h2/Picsart-25-01-31-07-50-35-286.jpg" alt="Profile" class="profile-img">
+        <h1>GESFER Official</h1>
+        <p class="bio">Your Perfect Companion | INDONESIA</p>
+    </div>
+
+    <div class="links">
+        <a href="https://www.instagram.com/gesfer.id?igsh=M211eGVkOGlsZ25q" class="link-item" target="_blank">
+            <div class="link-icon instagram">
+                <i class="fab fa-instagram"></i>
+            </div>
+            <span class="link-text">Instagram Portfolio</span>
+        </a>
+
+        <a href="https://www.tiktok.com/@gesfer.official?_t=ZS-8tiiivp8tE2&_r=1" class="link-item" target="_blank">
+            <div class="link-icon tiktok">
+                <i class="fab fa-tiktok"></i>
+            </div>
+            <span class="link-text">TikTok Showcase</span>
+        </a>
+
+        <a href="https://lazada.co.id/shop/gesfer-id" class="link-item" target="_blank">
+            <div class="link-icon shopee">
+                <i class="fas fa-shopping-bag"></i>
+            </div>
+            <span class="link-text">Premium Store</span>
+        </a>
+
+        <a href="https://sampelbuatwebsaya.my.canva.site/portofolio-gesfer" class="link-item" target="_blank">
+            <div class="link-icon portfolio">
+                <i class="fas fa-briefcase"></i>
+            </div>
+            <span class="link-text">Client Portfolio</span>
+        </a>
+
+        <a href="mailto:gesferofficialstore@gmail.com" class="link-item" target="_blank">
+            <div class="link-icon email">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <span class="link-text">Business Inquiry</span>
+        </a>
+    </div>
+
+    <a href="https://wa.me/6283130668282" class="wa-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div class="socials">
+        <a href="https://www.instagram.com/gesfer.id?igsh=M211eGVkOGlsZ25q" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="LINK_TWITTER" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="LINK_LINKEDIN" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+</body>
+</html>
